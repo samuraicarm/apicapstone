@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+ <link rel="stylesheet" href="main.css">
+
+    <title>YouTube Watch Later </title>
+</head>
+<body>
+    <nav class="black">
+        <div class="navWrapper">
+            <div class="container">
+                <a href="#!" class="brandLogo"> YouTube Watch Later</a>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <p> Log in with Google</p>
+            <button class="btn red" id="authorizeButton"> Log In</button>
+            <button class="btn red" id="signoutButton"> Log Out</button>
+            <br>
+            <div id="content">
+                <div class="row">
+                    <div class="col s6">
+                        <form id="channelForm">
+                            <div class="inputField col s6">
+                                <input type="text" placeholder="Enter Channel Name" id="channelInput">
+                                <input type="submit" placeholder="Get Channel Data" class="btn grey lighten-2">
+                            </div>
+                        </form>
+                    </div>
+                    <div id="channelData" class="col s6"></div>
+                </div>
+                <div class="row" id="videoContainer"></div>
+
+          </div>
+        </div>
+    </section>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="main.js"></script>
+<script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+#content{
+    display: none;
+}
+
+#authorizeButton {
+    display: none;
+}
+
+#signoutButton {
+    display:none;
+}

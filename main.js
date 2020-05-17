@@ -44,7 +44,7 @@ function updateSigninStatus(isSignedIn) {
         authorizeButton.style.display = 'block';
         getChannel(defaultChannel);
     } else {
-        authorizeButton.style.display = 'show';
+        authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
         content.style.display = 'none';
         authorizeButton.style.display = 'none';

@@ -66,6 +66,12 @@ function getChannel(channel) {
     console.log(channel);
 }
 
+//diplay channel data 
+function  showChannelData(data) {
+    const channelData = document.getElementById('channelData');
+    channelData.innerhtml = data;
+}
+
 //get channel data 
 function getChannel(channel){
     gapi.client.youtube.channels
@@ -74,7 +80,24 @@ function getChannel(channel){
         forUsername:channel
     })
         .then(response =>{
-            console.log(respnose);
+            console.log(response);
+            const channel = response.results.items[0];
+
+            const output = `
+            <ul class="collection">
+            <li class="collectionItem"> Title: ${channel.snippet.title}</li>
+            <li class="collectionItem">ID: ${channel.id}</li>
+            <li class="collectionItem">Subscribers: ${channel.statistics.subscriberCount}</li>
+            <li class="collectionItem">Views: ${channel.statistics.viewCount}</li>
+            <li class="collectionItem">Views: ${channel.statistics.videoCount}</li>
+            </ul>
+            <p>${channel.snippet.description}</p>
+            <hr>
+            <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customURL}">Visit Channel</a>
+            </hr>`;
+            showChannelID(output);
+
         })
         .catch(err=> alert ('No channel by that name.'));
     }
+

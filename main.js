@@ -13,6 +13,15 @@ const videoContainer = document.getElementById('videoContainer');
 
 const defaultChannel = 'TED';
 
+//form submit and change channel
+channelForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const channel = channelInput.value;
+
+    getChannel(channel);
+});
+
 //load auth2 library 
 function handleClientLoad(){
     gapi.load('client:auth2', initClient);

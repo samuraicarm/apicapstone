@@ -133,14 +133,13 @@ function getChannel(channel){
         const playListItems = response.result.items;
         if(playListItems) {
 
-            let output = <h4 class="align-center">Latest Videos</h4>;
+            let output = '<br><h4 class="center-align">Latest Videos</h4>';
 
             //loop through videos and append output
             playlistItem.forEach(item => {
                 const videoID = item.snippet.resourceID.videoID;
 
                 output +=`
-                
                 <div class = "col s3>
                 <iframe width="100%" height="auto" src="https://www.youtube.com/embed/${videoID}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 `;
@@ -150,7 +149,6 @@ function getChannel(channel){
         } else {
             videoContainer.innerHTML = "No Uploaded Videos"
         }
-
 
        });
    }

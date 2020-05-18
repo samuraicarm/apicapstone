@@ -123,11 +123,11 @@ function getChannel(userName){
            `;
             showChannelData(output);
 
-            const playlistId = channel.contentDetails.relatedPlaylists.uploads;
+            const playlistId = channel.contentDetails.relatedPlaylistsData.WatchLater;
             requestVideoPlaylist(playlistId);
 
         })
-        .catch(err => alert('No channel by that name.'));
+        
     }
 
    //add commas to number 
@@ -141,7 +141,7 @@ function getChannel(userName){
            playlistId: playlistId,
            part: 'snippet',
            maxResults: 10,
-           key: Key
+           key: apiKey
        }
 
        const request = gapi.client.youtube.playlistItems.list(requestOptions);

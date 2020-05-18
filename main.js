@@ -13,7 +13,7 @@ const channelForm = document.getElementById('channelForm');
 const channelInput = document.getElementById('channelInput');
 const videoContainer = document.getElementById('videoContainer');
 
-const defaultChannel = 'TEDtalksDirector';
+const defaultChannel = 'techguyweb';
 
 $(document).ready(function(){
     console.log("ready");
@@ -80,10 +80,6 @@ function handleSignoutClick() {
     gapi.auth2.getAuthInstance().signOut();
 }    
 
-//get channel from API
-function getChannel(channel) {
-    console.log(channel);
-}
 
 //diplay channel data 
 function  showChannelData(data) {
@@ -91,10 +87,10 @@ function  showChannelData(data) {
     channelData.innerhtml = data;
 }
 
-//get channel data 
+//get channel from API
 function getChannel(channel){
-    gapi.client.youtube.channels
-    .list({
+    console.log(channel);
+    gapi.client.youtube.channels.list({
         part: 'snippet,contentDetails,statistics',
         forUsername: channel
     })
@@ -120,7 +116,7 @@ function getChannel(channel){
             requestVideoPlaylist(playlistId);
 
         })
-        .catch(err=> alert ('No channel by that name.'));
+        .catch(err => alert('No channel by that name.'));
     }
 
    //add commas to number 

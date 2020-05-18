@@ -3,7 +3,6 @@
 //Options
 
 const CLIENT_ID='320890024553-c4sv5l4bdt5ng2odt3b2og44hqkc6cf1.apps.googleusercontent.com';
-const DISCOVERY_DOCS= ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES='https://www.googleapis.com/auth/youtube.readonly';
 const URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 const channelUrl = 'https://www.googleapis.com/youtube/v3/channels'
@@ -30,11 +29,12 @@ $(function() {
 
 
   function watchForm() {
+    const channel = '';
     console.log("watch form");
     channelForm.addEventListener('submit', e => {
     console.log("I get called after the form is submitted.");
     e.preventDefault();
-    const channel = channelInput.value;
+    channel = channelInput.value;
     getChannel(channel);
     console.log(channel);
     });
@@ -50,8 +50,7 @@ function handleClientLoad(){
 function initClient(){
     gapi.client.init({
         clientId: CLIENT_ID,
-        scope: SCOPES,
-        key: apiKey
+        scope: SCOPES
     }).then(() => {
         //listen for sign in state changes
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
@@ -78,6 +77,7 @@ function updateSignInStatus(isSignedIn) {
         signoutButton.style.display = 'block';
         content.style.display = 'block';
         videoContainer.style.display = 'block';
+        getChannel(defaultChannel);
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';

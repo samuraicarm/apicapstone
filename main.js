@@ -1,3 +1,5 @@
+'use strict';
+  
 //Options
 
 const CLIENT_ID='320890024553-c4sv5l4bdt5ng2odt3b2og44hqkc6cf1.apps.googleusercontent.com';
@@ -12,6 +14,14 @@ const channelInput = document.getElementById('channelInput');
 const videoContainer = document.getElementById('videoContainer');
 
 const defaultChannel = 'TEDtalksDirector';
+
+$(document).ready(function(){
+    console.log("ready");
+  });
+  
+  $(function() {
+    console.log('App loaded! Waiting for submit!');
+  });
 
 //form submit and change channel
 channelForm.addEventListener('submit', e => {
@@ -86,7 +96,7 @@ function getChannel(channel){
     gapi.client.youtube.channels
     .list({
         part: 'snippet,contentDetails,statistics',
-        forUsername:channel
+        forUsername: channel
     })
         .then(response => {
             console.log(response);

@@ -36,6 +36,7 @@ $(function() {
     e.preventDefault();
     const userName = channelInput.value;
     getChannel(userName);
+    console.log(userName);
     });
   }
  
@@ -171,4 +172,4 @@ function getChannel(userName){
        });
    }
 
-
+   $(watchForm);

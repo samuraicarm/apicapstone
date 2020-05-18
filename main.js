@@ -45,7 +45,7 @@ function initClient(){
 
 //update UI sign in state changes
 
-function updateSigninStatus(isSignedIn) {
+function updateSignInStatus(isSignedIn) {
     if(isSignedIn) {
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';

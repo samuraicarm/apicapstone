@@ -16,7 +16,7 @@ const channelForm = document.getElementById('channelForm');
 const channelInput = document.getElementById('channelInput');
 const videoContainer = document.getElementById('videoContainer');
 
-const defaultUserName = 'techwebguy';
+const defaultChannel = 'techwebguy';
 
 
 $(document).ready(function(){
@@ -34,9 +34,9 @@ $(function() {
     channelForm.addEventListener('submit', e => {
     console.log("I get called after the form is submitted.");
     e.preventDefault();
-    const userName = channelInput.value;
-    getChannel(userName);
-    console.log(userName);
+    const channel = channelInput.value;
+    getChannel(channel);
+    console.log(channel);
     });
   }
  
@@ -49,7 +49,6 @@ function handleClientLoad(){
 //init API client library and set sign in listeners
 function initClient(){
     gapi.client.init({
-        discoveryDocs: DISCOVERY_DOCS,
         clientId: CLIENT_ID,
         scope: SCOPES,
         key: apiKey
@@ -61,7 +60,15 @@ function initClient(){
         authorizeButton.onclick = handleAuthClick;
         signoutButton.onclick = handleSignoutClick;
     });
+    loadApi(apiKey);
 }
+
+function loadApi() {
+    gapi.client.setApiKey(apiKey);
+    return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
 
 //update UI sign in state changes
 
@@ -97,10 +104,10 @@ function  showChannelData(data) {
 }
 
 
-function getChannel(userName){
+function getChannel(channel){
     gapi.client.youtube.channels.list({
         "part": 'snippet,contentDetails,statistics',
-        "forUsername": userName
+        "forUsername": channel
        
     })
         .then(response => {
@@ -121,7 +128,7 @@ function getChannel(userName){
            `;
             showChannelData(output);
 
-            const playlistId = channel.contentDetails.relatedPlaylists.Uploads;
+            const playlistId = channel.contentDetails.relatedPlaylists.uploads;
             requestVideoPlaylist(playlistId);
 
         })
@@ -146,14 +153,14 @@ function getChannel(userName){
        request.execute(response => {
         console.log(response);
 
-        const playListVideos = response.result.items;
-        if(playListVideos) {
+        const playListItems = response.result.items;
+        if(playListItems) {
 
             let output = '<br><h4 class="center-align">Latest Videos</h4>';
 
             //loop through videos and append output
-            playlistVideos.forEach(item => {
-                const videoID = item.snippet.resourceID.videoId;
+            playListItems.forEach(item => {
+                const videoId = item.snippet.resourceID.videoId;
 
                 output +=`
                 <div class = "col s3>

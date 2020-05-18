@@ -5,6 +5,8 @@
 const CLIENT_ID='320890024553-c4sv5l4bdt5ng2odt3b2og44hqkc6cf1.apps.googleusercontent.com';
 const DISCOVERY_DOCS= ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES='https://www.googleapis.com/auth/youtube.readonly';
+const URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
+const Key = 'AIzaSyDRuSb5tXeUX7c5LkNhAxxdbgBB8kNUfZ8';
 
 const authorizeButton = document.getElementById('authorizeButton');
 const signoutButton = document.getElementById('signoutButton');
@@ -14,6 +16,13 @@ const channelInput = document.getElementById('channelInput');
 const videoContainer = document.getElementById('videoContainer');
 
 const defaultChannel = 'ted';
+
+const options = {
+    part:'snippet',
+    key: key,
+    maxResults: 20,
+    playlistID: playlistId
+}
 
 $(document).ready(function(){
     console.log("ready");
@@ -128,7 +137,8 @@ function getChannel(channel){
        const requestOptions = {
            playlistId: playlistId,
            part: 'snippet',
-           maxResults: 10
+           maxResults: 10,
+           key: Key
        }
 
        const request = gapi.client.youtube.playlistItems.list(requestOptions);
@@ -157,7 +167,6 @@ function getChannel(channel){
         }
 
        });
-       console.log(channel);
    }
 
 

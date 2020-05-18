@@ -19,7 +19,7 @@ const defaultChannel = 'ted';
 
 const options = {
     part:'snippet',
-    key: key,
+    key: Key,
     maxResults: 20,
     playlistID: playlistId
 }

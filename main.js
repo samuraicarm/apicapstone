@@ -11,7 +11,7 @@ const channelForm = document.getElementById('channelForm');
 const channelInput = document.getElementById('channelInput');
 const videoContainer = document.getElementById('videoContainer');
 
-const defaultChannel = 'TED';
+const defaultChannel = 'TEDtalksDirector';
 
 //form submit and change channel
 channelForm.addEventListener('submit', e => {

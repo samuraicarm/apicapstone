@@ -119,8 +119,8 @@ function loadClient() {
               function(err) { console.error("Execute error", err); });
   }
 
-  function watchForm();
-  
+  function watchForm()
+
 /*
 
 //display channel data 

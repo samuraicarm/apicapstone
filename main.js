@@ -13,7 +13,7 @@ const channelForm = document.getElementById('channelForm');
 const channelInput = document.getElementById('channelInput');
 const videoContainer = document.getElementById('videoContainer');
 
-const defaultChannel = 'techguyweb';
+const defaultChannel = 'ted';
 
 $(document).ready(function(){
     console.log("ready");
@@ -100,16 +100,16 @@ function getChannel(channel){
 
             const output = `
             <ul class="collection">
-            <li class="collectionItem"> Title: ${channel.snippet.title}</li>
-            <li class="collectionItem">ID: ${channel.id}</li>
-            <li class="collectionItem">Subscribers: ${numberWithCommas(channel.statistics.subscriberCount)}</li>
-            <li class="collectionItem">Views: ${numberWithCommas(channel.statistics.viewCount)}</li>
-            <li class="collectionItem">Views: ${numberWithCommas(channel.statistics.videoCount)}</li>
+            <li class="collection-item"> Title: ${channel.snippet.title}</li>
+            <li class="collection-item">ID: ${channel.id}</li>
+            <li class="collection-item">Subscribers: ${numberWithCommas(channel.statistics.subscriberCount)}</li>
+            <li class="collection-item">Views: ${numberWithCommas(channel.statistics.viewCount)}</li>
+            <li class="collection-item">Videos: ${numberWithCommas(channel.statistics.videoCount)}</li>
             </ul>
             <p>${channel.snippet.description}</p>
             <hr>
             <a class="btn grey darken-2" target="_blank" href="https://youtube.com/${channel.snippet.customURL}">Visit Channel</a>
-            </hr>`;
+           `;
             showChannelData(output);
 
             const playlistId = channel.contentDetails.relatedPlaylists.uploads;

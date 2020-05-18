@@ -90,20 +90,18 @@ function handleSignoutClick() {
 }    
 
 
-
-/*
-
 //display channel data 
 function  showChannelData(data) {
     const channelData = document.getElementById('channelData');
     channelData.innerhtml = data;
 }
-*/
+
 
 function getChannel(userName){
     gapi.client.youtube.channels.list({
-        part: 'snippet,contentDetails,statistics',
-        forUsername: userName
+        "part": 'snippet,contentDetails,statistics',
+        "forUsername": userName,
+        "mine": true
     })
         .then(response => {
             console.log(response);

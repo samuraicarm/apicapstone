@@ -19,7 +19,7 @@ $(document).ready(function(){
     console.log("ready");
   });
   
-  $(function() {
+$(function() {
     console.log('App loaded! Waiting for submit!');
   });
 
@@ -96,7 +96,7 @@ function getChannel(channel){
     })
         .then(response => {
             console.log(response);
-            const channel = response.results.items[0];
+            const channel = response.result.items[0];
 
             const output = `
             <ul class="collection">

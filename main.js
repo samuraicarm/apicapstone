@@ -6,7 +6,8 @@ const CLIENT_ID='320890024553-c4sv5l4bdt5ng2odt3b2og44hqkc6cf1.apps.googleuserco
 const DISCOVERY_DOCS= ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES='https://www.googleapis.com/auth/youtube.readonly';
 const URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
-
+const channelUrl = 'https://www.googleapis.com/youtube/v3/channels'
+const apiKey = 'AIzaSyDRuSb5tXeUX7c5LkNhAxxdbgBB8kNUfZ8';
 
 const authorizeButton = document.getElementById('authorizeButton');
 const signoutButton = document.getElementById('signoutButton');
@@ -26,14 +27,18 @@ $(function() {
     console.log('App loaded! Waiting for submit!');
   });
 
-//form submit and change channel
-channelForm.addEventListener('submit', e => {
+
+
+  function watchForm() {
+    console.log("watch form");
+    channelForm.addEventListener('submit', e => {
+    console.log("I get called after the form is submitted.");
     e.preventDefault();
-
-    const channel = channelInput.value;
-
-    getChannel(channel);
-});
+    const userName = channelInput.value;
+    getChannel(userName);
+    });
+  }
+ 
 
 //load auth2 library 
 function handleClientLoad(){
@@ -64,7 +69,6 @@ function updateSignInStatus(isSignedIn) {
         signoutButton.style.display = 'block';
         content.style.display = 'block';
         videoContainer.style.display = 'block';
-        getChannel(defaultChannel);
     } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
@@ -76,6 +80,7 @@ function updateSignInStatus(isSignedIn) {
 // handle login 
 function handleAuthClick() {
     gapi.auth2.getAuthInstance().signIn();
+    loadClient();
 }
 
 //handle logout
@@ -83,6 +88,37 @@ function handleSignoutClick() {
     gapi.auth2.getAuthInstance().signOut();
 }    
 
+
+function loadClient() {
+    gapi.client.setApiKey("apiKey");
+    return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function getChannel() {
+    console.log("Getting Channel");
+    return gapi.client.youtube.channels.list({
+      "part": "id",
+      "forUsername": userName,
+      "mine": true
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+
+  function getPlaylist() {
+    return gapi.client.youtube.playlistItems.list({})
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+/*
 
 //display channel data 
 function  showChannelData(data) {
@@ -162,5 +198,5 @@ function getChannel(channel){
 
        });
    }
-
+*/
 

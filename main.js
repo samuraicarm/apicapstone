@@ -88,7 +88,7 @@ function getChannel(channel){
         part: 'snippet,contentDetails,statistics',
         forUsername:channel
     })
-        .then(response =>{
+        .then(response => {
             console.log(response);
             const channel = response.results.items[0];
 
@@ -136,7 +136,7 @@ function getChannel(channel){
             let output = '<br><h4 class="center-align">Latest Videos</h4>';
 
             //loop through videos and append output
-            playlistItem.forEach(item => {
+            playlistItems.forEach(item => {
                 const videoID = item.snippet.resourceID.videoID;
 
                 output +=`

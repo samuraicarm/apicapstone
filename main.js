@@ -16,7 +16,7 @@ const channelForm = document.getElementById('channelForm');
 const channelInput = document.getElementById('channelInput');
 const videoContainer = document.getElementById('videoContainer');
 
-const defaultChannel = 'ted';
+const defaultUserName = 'techwebguy';
 
 
 $(document).ready(function(){
@@ -100,7 +100,7 @@ function  showChannelData(data) {
 function getChannel(userName){
     gapi.client.youtube.channels.list({
         "part": 'snippet,contentDetails,statistics',
-        "forUsername": userName,
+        "forUsername": userName
        
     })
         .then(response => {
@@ -121,11 +121,11 @@ function getChannel(userName){
            `;
             showChannelData(output);
 
-            const playlistId = channel.contentDetails.relatedPlaylistsData.WatchLater;
+            const playlistId = channel.contentDetails.relatedPlaylists.Uploads;
             requestVideoPlaylist(playlistId);
 
         })
-        
+        .catch(err => alert('No channel by that name.'));
     }
 
    //add commas to number 
@@ -139,8 +139,6 @@ function getChannel(userName){
            "playlistId": playlistId,
            "part": 'snippet',
            "maxResults": 10,
-           "key": apiKey,
-           "mine": true
        }
 
        const request = gapi.client.youtube.playlistItems.list(requestOptions);
@@ -154,12 +152,12 @@ function getChannel(userName){
             let output = '<br><h4 class="center-align">Latest Videos</h4>';
 
             //loop through videos and append output
-            playlistItems.forEach(item => {
-                const videoID = item.snippet.resourceID.videoID;
+            playlistVideos.forEach(item => {
+                const videoID = item.snippet.resourceID.videoId;
 
                 output +=`
                 <div class = "col s3>
-                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/${videoID}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="auto" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 `;
             });
               //Output Videos

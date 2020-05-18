@@ -34,7 +34,7 @@ $(function() {
     channelForm.addEventListener('submit', e => {
     console.log("I get called after the form is submitted.");
     e.preventDefault();
-    channelInput.value;
+    channel = channelInput.value;
     getChannel(channel);
     console.log(channel);
     });

@@ -17,12 +17,6 @@ const videoContainer = document.getElementById('videoContainer');
 
 const defaultChannel = 'ted';
 
-const options = {
-    part:'snippet',
-    key: Key,
-    maxResults: 20,
-    playlistID: playlistId
-}
 
 $(document).ready(function(){
     console.log("ready");

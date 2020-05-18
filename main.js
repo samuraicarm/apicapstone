@@ -6,7 +6,7 @@ const CLIENT_ID='320890024553-c4sv5l4bdt5ng2odt3b2og44hqkc6cf1.apps.googleuserco
 const DISCOVERY_DOCS= ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const SCOPES='https://www.googleapis.com/auth/youtube.readonly';
 const URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
-const Key = 'AIzaSyDRuSb5tXeUX7c5LkNhAxxdbgBB8kNUfZ8';
+
 
 const authorizeButton = document.getElementById('authorizeButton');
 const signoutButton = document.getElementById('signoutButton');

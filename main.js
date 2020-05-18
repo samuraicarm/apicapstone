@@ -29,12 +29,11 @@ $(function() {
 
 
   function watchForm() {
-    let channel = '';
     console.log("watch form");
     channelForm.addEventListener('submit', e => {
     console.log("I get called after the form is submitted.");
     e.preventDefault();
-    channel = channelInput.value;
+    const channel = channelInput.value;
     getChannel(channel);
     console.log(channel);
     });

@@ -50,7 +50,8 @@ function initClient(){
     gapi.client.init({
         discoveryDocs: DISCOVERY_DOCS,
         clientId: CLIENT_ID,
-        scope: SCOPES
+        scope: SCOPES,
+        key: apiKey
     }).then(() => {
         //listen for sign in state changes
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSignInStatus);
@@ -80,7 +81,6 @@ function updateSignInStatus(isSignedIn) {
 // handle login 
 function handleAuthClick() {
     gapi.auth2.getAuthInstance().signIn();
-    loadClient();
 }
 
 //handle logout
@@ -89,37 +89,6 @@ function handleSignoutClick() {
 }    
 
 
-function loadClient() {
-    gapi.client.setApiKey("apiKey");
-    return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-        .then(function() { console.log("GAPI client loaded for API"); },
-              function(err) { console.error("Error loading GAPI client for API", err); });
-  }
-  // Make sure the client is loaded and sign-in is complete before calling this method.
-  function getChannel() {
-    console.log("Getting Channel");
-    return gapi.client.youtube.channels.list({
-      "part": "id",
-      "forUsername": userName,
-      "mine": true
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
-
-  function getPlaylist() {
-    return gapi.client.youtube.playlistItems.list({})
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
-
-  function watchForm()
 
 /*
 
@@ -128,12 +97,12 @@ function  showChannelData(data) {
     const channelData = document.getElementById('channelData');
     channelData.innerhtml = data;
 }
+*/
 
-//get channel from API
-function getChannel(channel){
+function getChannel(userName){
     gapi.client.youtube.channels.list({
         part: 'snippet,contentDetails,statistics',
-        forUsername: channel
+        forUsername: userName
     })
         .then(response => {
             console.log(response);
@@ -201,5 +170,5 @@ function getChannel(channel){
 
        });
    }
-*/
+
 

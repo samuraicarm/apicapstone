@@ -101,7 +101,7 @@ function getChannel(userName){
     gapi.client.youtube.channels.list({
         "part": 'snippet,contentDetails,statistics',
         "forUsername": userName,
-        "mine": true
+       
     })
         .then(response => {
             console.log(response);
@@ -136,10 +136,11 @@ function getChannel(userName){
    //request videos
    function requestVideoPlaylist(playlistId) {
        const requestOptions = {
-           playlistId: playlistId,
-           part: 'snippet',
-           maxResults: 10,
-           key: apiKey
+           "playlistId": playlistId,
+           "part": 'snippet',
+           "maxResults": 10,
+           "key": apiKey,
+           "mine": true
        }
 
        const request = gapi.client.youtube.playlistItems.list(requestOptions);

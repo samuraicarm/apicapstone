@@ -124,6 +124,7 @@ function getChannel(channel){
        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
    }
 
+   //request videos
    function requestVideoPlaylist(playlistId) {
        const requestOptions = {
            playlistId: playlistId,
@@ -131,13 +132,13 @@ function getChannel(channel){
            maxResults: 10
        }
 
-       const request = gapi.client.youtube.playlistItems.list (requestOptions);
+       const request = gapi.client.youtube.playlistItems.list(requestOptions);
 
        request.execute(response => {
         console.log(response);
 
-        const playListItems = response.result.items;
-        if(playListItems) {
+        const playListVideos = response.result.items;
+        if(playListVideos) {
 
             let output = '<br><h4 class="center-align">Latest Videos</h4>';
 

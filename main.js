@@ -15,7 +15,7 @@ const channelForm = document.getElementById('channelForm');
 const channelInput = document.getElementById('channelInput');
 const videoContainer = document.getElementById('videoContainer');
 
-const defaultChannel = 'techwebguy';
+const defaultChannel = 'techguyweb';
 
 
 $(document).ready(function(){
@@ -102,11 +102,12 @@ function  showChannelData(data) {
     channelData.innerhtml = data;
 }
 
-
+//get channel from API
 function getChannel(channel){
+    console.log(channel)
     gapi.client.youtube.channels.list({
-        "part": 'snippet,contentDetails,statistics',
-        "forUsername": channel
+        part: 'snippet,contentDetails,statistics',
+        forUsername: channel
        
     })
         .then(response => {
@@ -176,3 +177,5 @@ function getChannel(channel){
    }
 
    $(watchForm);
+
+

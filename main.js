@@ -6,7 +6,7 @@ const CLIENT_ID='320890024553-c4sv5l4bdt5ng2odt3b2og44hqkc6cf1.apps.googleuserco
 const SCOPES='https://www.googleapis.com/auth/youtube.readonly';
 const URL = 'https://www.googleapis.com/youtube/v3/playlistItems';
 const channelUrl = 'https://www.googleapis.com/youtube/v3/channels'
-const apiKey = '';
+const apiKey = 'AIzaSyDRuSb5tXeUX7c5LkNhAxxdbgBB8kNUfZ8';
 
 const authorizeButton = document.getElementById('authorizeButton');
 const signoutButton = document.getElementById('signoutButton');
@@ -132,7 +132,11 @@ function getChannel(channel){
             requestVideoPlaylist(playlistId);
 
         })
-        .catch(err => alert('No channel by that name.'));
+        .catch (function(error) {
+
+            alert("No channel by that name", error);
+          
+          });
     }
 
    //add commas to number 

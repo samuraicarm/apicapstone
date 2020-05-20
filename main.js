@@ -96,13 +96,6 @@ function handleSignoutClick() {
 }    
 
 
-//display channel data 
-function  showChannelData(data) {
-    const channelData = document.getElementById('channelData');
-    channelData.innerhtml = data;
-}
-
-
 
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
@@ -111,16 +104,18 @@ function formatQueryParams(params) {
   }
   
   
-  function getYouTubeVideos(query, maxResults=10) {
+  function getChannel(channel) {
     const params = {
       key: apiKey,
       part: 'snippet,contentDetails,statistics',
       forUsername: channel
     };
+
     const queryString = formatQueryParams(params)
     const url = channelUrl + '?' + queryString;
   
     fetch(url)
+    console.log(url)
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -156,6 +151,12 @@ function formatQueryParams(params) {
     // display the results section  
     $('#results').removeClass('hidden');
   };
+
+  //display channel data 
+function  showChannelData(data) {
+    const channelData = document.getElementById('channelData');
+    channelData.innerhtml = data;
+}
 
 /* get channel from API
 function getChannel(channel){

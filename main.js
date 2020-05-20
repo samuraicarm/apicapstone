@@ -107,7 +107,7 @@ function getChannel(channel){
     console.log(channel)
     gapi.client.youtube.channels.list({
         part: 'snippet,contentDetails,statistics',
-        userName: channel
+        forUsername: channel
        
     })
         .then(response => {
@@ -132,11 +132,7 @@ function getChannel(channel){
             requestVideoPlaylist(playlistId);
 
         })
-        .catch (function(error) {
-
-            alert("No channel by that name", error);
-          
-          });
+        .catch(err => alert('No channel by that name.'));
     }
 
    //add commas to number 

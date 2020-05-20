@@ -132,7 +132,7 @@ function getChannel(channel){
             requestVideoPlaylist(playlistId);
 
         })
-        .catch(err => alert('No channel by that name.'));
+        .catch(err => alert('No channel by that name.', err));
     }
 
    //add commas to number 
